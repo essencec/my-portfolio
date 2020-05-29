@@ -1,5 +1,7 @@
 # Google Student Training in Engineering Program
 
+This repo contains Essence's portfolio and STEP projects.
+
 This repo contains the projects you'll work on for the first half of STEP.
 This work is based on the [Google Software Product Sprint](https://g.co/softwareproductsprint) program.
 
@@ -11,3 +13,4 @@ To get started:
   - If the tutorial panel does not open or display the walkthrough contents, try refreshing the page.
 
 Then follow the on-screen instructions to set up your repo.
+
