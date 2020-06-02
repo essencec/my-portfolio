@@ -1,14 +1,32 @@
 #content {
-  margin: 0;
-  height: 100%;
-  background-image: radial-gradient(circle, #FFFFFF 0%, #A9A9A9 100%);
-  text-align: center;
+    margin: 0;
+    height: 100%;
+    background-image: radial-gradient(circle, #FFFFFF 0%, #A9A9A9 100%);
+    text-align: center;
 }
 
 h1 {
-  font-size: 40px;
+    font-size: 40px;
 }
 
-h2{
-  font-size: 30px;
+h2 {
+    font-size: 30px;
+}
+
+.envelope-image {
+    border: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.linkedin-image {
+    border: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.github-image {
+    border: 0;
+    width: 30px;
+    height: 30px;
 }
