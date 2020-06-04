@@ -13,6 +13,11 @@ h2 {
     font-size: 30px;
 }
 
+.google-image{
+    height: 60px;
+    width: 60px;
+}
+
 .envelope-image {
     border: 0;
     width: 30px;
