@@ -1,9 +1,37 @@
 #content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+    margin: 0;
+    height: 100%;
+    background-image: radial-gradient(circle, #FFFFFF 0%, #A9A9A9 100%);
+    text-align: center;
 }
 
-#greeting-container {
-  margin-top: 20px;
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+.google-image{
+    height: 60px;
+    width: 60px;
+}
+
+.envelope-image {
+    border: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.linkedin-image {
+    border: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.github-image {
+    border: 0;
+    width: 30px;
+    height: 30px;
 }
