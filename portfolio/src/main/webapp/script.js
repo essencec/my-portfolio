@@ -15,6 +15,27 @@
 /**
  * Adds a random greeting to the page.
  */
+
+function getGreeting() {
+    console.log('Printing the greeting.');
+
+    const responsePromise = fetch('/data');
+
+    responsePromise.then(handleResponse);
+}
+
+function handleResponse(response) {
+    console.log('Handling the response.');
+
+    const textPromise = response.text();
+
+    textPromise.then(addGreetingToDom);
+}
+
+function addGreetingToDom() {
+    
+}
+
 function addRandomGreeting() {
   const greetings =
       ['Essence has 3 siblings', 'Essence has one neice and one nephew', 'Essence attended a performing arts school', 'Essence played sports growing up'];
