@@ -17,33 +17,7 @@
  */
 
 function getGreeting() {
-    console.log('Printing the greeting.');
-
-    const responsePromise = fetch('/data');
-
-    responsePromise.then(handleResponse);
-}
-
-function handleResponse(response) {
-    console.log('Handling the response.');
-
-    const textPromise = response.text();
-
-    textPromise.then(addGreetingToDom);
-}
-
-function addGreetingToDom() {
-    
-}
-
-function addRandomGreeting() {
-  const greetings =
-      ['Essence has 3 siblings', 'Essence has one neice and one nephew', 'Essence attended a performing arts school', 'Essence played sports growing up'];
-
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+fetch('/data').then(response => response.text()).then((quote) => {
+    document.getElementById('greeting-container').innerText = quote;
+  });
 }
