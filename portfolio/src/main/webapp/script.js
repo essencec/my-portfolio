@@ -15,14 +15,9 @@
 /**
  * Adds a random greeting to the page.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Essence has 3 siblings', 'Essence has one neice and one nephew', 'Essence attended a performing arts school', 'Essence played sports growing up'];
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+function getGreeting() {
+fetch('/data').then(response => response.text()).then((quote) => {
+    document.getElementById('greeting-container').innerText = quote;
+  });
 }
