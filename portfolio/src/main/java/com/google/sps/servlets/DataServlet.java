@@ -29,14 +29,29 @@ public class DataServlet extends HttpServlet {
     ArrayList<String> jsonData = new ArrayList<String>();
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        jsonData.add("Excellent work!");
-        jsonData.add("Great time management skills.");
-        jsonData.add("Very organized.");
-    
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {   
         String json = convertToJson(jsonData);
         response.setContentType("application/json;");
         response.getWriter().println(json);
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String text = getParameter(request, "text-input", "");
+        jsonData.add(text);
+
+        response.setContentType("text/html;");
+        response.getWriter().println(text);
+
+        response.sendRedirect("/data");
+    }
+
+    private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+        String value = request.getParameter(name);
+        if (value == null) {
+            return defaultValue;
+        }
+        return value;
     }
 
     private String convertToJson(ArrayList<String> jsonData) {
