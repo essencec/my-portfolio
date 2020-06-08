@@ -17,15 +17,15 @@
  */
 
 function getComments() {
-    fetch('/data').then(response => response.json()).then((comments) => {
+  fetch('/data').then(response => response.json()).then((comments) => {
     const commentsListElement = document.getElementById('comments-container');
     commentsListElement.innerHTML = '';
     commentsListElement.appendChild(createListElement(comments.json))
-    });
+  });
 }
 
 function createListElement(text) {
-    const liElement = document.createElement('li');
-    liElement.innerText = text;
-    return liElement;
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
