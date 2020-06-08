@@ -16,8 +16,16 @@
  * Adds a random greeting to the page.
  */
 
-function getGreeting() {
-fetch('/data').then(response => response.text()).then((quote) => {
-    document.getElementById('greeting-container').innerText = quote;
+function getComments() {
+  fetch('/data').then(response => response.json()).then((comments) => {
+    const commentsListElement = document.getElementById('comments-container');
+    commentsListElement.innerHTML = '';
+    commentsListElement.appendChild(createListElement(comments.json))
   });
+}
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
