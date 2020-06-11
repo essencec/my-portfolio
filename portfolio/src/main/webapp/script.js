@@ -12,15 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-
 function getComments() {
-  fetch('/data').then(response => response.json()).then((comments) => {
-    const commentsListElement = document.getElementById('comments-container');
-    commentsListElement.innerHTML = '';
-    commentsListElement.appendChild(createListElement(comments.json))
+  const val = document.getElementById("comment-number").value;
+  fetch('/data?numOfComments='+val+"&searchquery=5").then(response => response.json()).then((jsonData) => {
+      const commentsListElement = document.getElementById('comment-list');
+      commentsListElement.innerHTML = '';
+      for(let i = 0; i < jsonData.length; i++) {
+        commentsListElement.appendChild(createListElement(jsonData[i]));
+      } 
   });
 }
 

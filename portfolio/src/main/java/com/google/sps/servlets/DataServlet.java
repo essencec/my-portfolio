@@ -17,6 +17,7 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.gson.Gson;
@@ -33,23 +34,30 @@ public class DataServlet extends HttpServlet {
 
     ArrayList<String> jsonData = new ArrayList<String>();
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    int numOfComments;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {   
         Query query = new Query("Comment");
-
         PreparedQuery results = datastore.prepare(query);
+
         for (Entity entity : results.asIterable()) {
             String text = (String) entity.getProperty("text");
+            results.asList(FetchOptions.Builder.withLimit(numOfComments));
+            
         }
         
-        String json = convertToJson(jsonData);
         response.setContentType("application/json;");
+        String json = convertToJson(jsonData);
         response.getWriter().println(json);
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String numOfCommentsString = request.getParameter("numOfComments");
+        if (numOfCommentsString != null) {
+            numOfComments = Integer.parseInt(numOfCommentsString);
+        }
         String text = getParameter(request, "text-input", "");
         jsonData.add(text);
 
@@ -61,7 +69,7 @@ public class DataServlet extends HttpServlet {
         response.setContentType("text/html;");
         response.getWriter().println(text);
 
-        response.sendRedirect("/data");
+        response.sendRedirect("/index.html");
     }
 
     private String getParameter(HttpServletRequest request, String name, String defaultValue) {
