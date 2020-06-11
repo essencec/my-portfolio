@@ -59,9 +59,7 @@ public class DataServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ArrayList<String> jsonData = new ArrayList<String>();
         String text = getParameter(request, "text-input", "");
-        jsonData.add(text);
 
         Entity commentEntity = new Entity("Comment");
         commentEntity.setProperty("text", text);

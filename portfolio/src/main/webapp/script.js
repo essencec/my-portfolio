@@ -14,7 +14,7 @@
 
 function getComments() {
   const val = document.getElementById("comment-number").value;
-  fetch('/data?numOfComments='+val+"&searchquery=5").then(response => response.json()).then((jsonData) => {
+  fetch('/data?numOfComments='+val).then(response => response.json()).then((jsonData) => {
       const commentsListElement = document.getElementById('comment-list');
       commentsListElement.innerHTML = '';
       for(let i = 0; i < jsonData.length; i++) {
