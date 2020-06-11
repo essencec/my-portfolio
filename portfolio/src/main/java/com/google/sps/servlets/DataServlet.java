@@ -27,24 +27,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.List;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-    ArrayList<String> jsonData = new ArrayList<String>();
+    
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     int numOfComments;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {   
+        String numOfCommentsString = request.getParameter("numOfComments");
+        if (numOfCommentsString != null) {
+            numOfComments = Integer.parseInt(numOfCommentsString);
+        }
         Query query = new Query("Comment");
         PreparedQuery results = datastore.prepare(query);
-
-        for (Entity entity : results.asIterable()) {
-            String text = (String) entity.getProperty("text");
-            results.asList(FetchOptions.Builder.withLimit(numOfComments));
-            
+        List<Entity> entity = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(numOfComments));
+        ArrayList<String> jsonData = new ArrayList<String>();
+        for(int i = 0; i < entity.size(); i++) {
+            String temp = (String) entity.get(i).getProperty("text");
+            jsonData.add(temp);
         }
         
         response.setContentType("application/json;");
@@ -54,10 +59,7 @@ public class DataServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String numOfCommentsString = request.getParameter("numOfComments");
-        if (numOfCommentsString != null) {
-            numOfComments = Integer.parseInt(numOfCommentsString);
-        }
+        ArrayList<String> jsonData = new ArrayList<String>();
         String text = getParameter(request, "text-input", "");
         jsonData.add(text);
 
