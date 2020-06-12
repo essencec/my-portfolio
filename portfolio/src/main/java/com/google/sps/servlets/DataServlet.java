@@ -43,7 +43,7 @@ public class DataServlet extends HttpServlet {
         try {
             numOfComments  = Integer.parseInt(numOfCommentsString);
         } catch(NumberFormatException e){  
-        response.sendError(500);
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         response.setContentType("text/html;");
         response.getWriter().println("Error: `numOfComments` is not a string");
         return;
