@@ -35,14 +35,20 @@ public class DataServlet extends HttpServlet {
 
     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    int numOfComments;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {   
         String numOfCommentsString = request.getParameter("numOfComments");
-        if (numOfCommentsString != null) {
-            numOfComments = Integer.parseInt(numOfCommentsString);
+        int numOfComments;
+        try {
+            numOfComments  = Integer.parseInt(numOfCommentsString);
+        } catch(NumberFormatException e){  
+        response.sendError(500);
+        response.setContentType("text/html;");
+        response.getWriter().println("Error: `numOfComments` is not a string");
+        return;
         }
+     
         Query query = new Query("Comment");
         PreparedQuery results = datastore.prepare(query);
         List<Entity> entity = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(numOfComments));
