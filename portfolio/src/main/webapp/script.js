@@ -19,18 +19,18 @@ function drawChart() {
   const data = new google.visualization.DataTable();
   data.addColumn('string', 'Hobby');
   data.addColumn('number', 'Count');
-        data.addRows([
-          ['Reading', 20],
-          ['Baking', 10],
-          ['Listening to Music', 15],
-          ['Watching Movies', 25],
-          ['Spending Time with Friends and Family', 30]
-        ]);
+    data.addRows([
+        ['Reading', 20],
+        ['Baking', 10],
+        ['Listening to Music', 15],
+        ['Watching Movies', 25],
+        ['Spending Time with Friends and Family', 30]
+    ]);
 
   const options = {
     'title': 'Hobbies',
-    'width':500,
-    'height':400
+    'width': 500,
+    'height': 400
   };
 
   const chart = new google.visualization.PieChart(
