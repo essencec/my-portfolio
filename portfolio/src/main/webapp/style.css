@@ -5,6 +5,11 @@
     text-align: center;
 }
 
+#chart-container {
+    display: inline-block;
+    margin: auto;
+}
+
 .comment-area {
     margin: 0;
     height: 100%;
